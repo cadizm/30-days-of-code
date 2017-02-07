@@ -1,22 +1,18 @@
 
-all: hello datatype operators conditionals clsvsins
+ALL := $(patsubst %.go,%,$(wildcard *.go))
 
-hello:
-	go build -o ./bin/hello github.com/cadizm/30-days-of-code/hello
+all:
+	@for prog in $(ALL); do \
+		echo go build -o $$prog $$prog.go; \
+		go build -o $$prog $$prog.go; \
+	done;
 
-datatype:
-	go build -o ./bin/datatype github.com/cadizm/30-days-of-code/datatype
-
-operators:
-	go build -o ./bin/operators github.com/cadizm/30-days-of-code/operators
-
-conditionals:
-	go build -o ./bin/conditionals github.com/cadizm/30-days-of-code/conditionals
-
-clsvsins:
-	go build -o ./bin/clsvsins github.com/cadizm/30-days-of-code/clsvsins
+$(ALL): $@
+	go build -o $@ $@.go
 
 clean:
-	@rm -f ./bin/*
+	@for prog in $(ALL); do \
+		rm -f $$prog; \
+	done;
 
-.PHONY: clean hello datatype operators conditionals clsvsins
+.PHONY: all clean $(ALL)
