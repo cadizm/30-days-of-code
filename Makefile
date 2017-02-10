@@ -9,4 +9,4 @@ $(ALL): $@
 clean:
 	rm -f $(ALL)
 
-.PHONY: all clean
+.PHONY: all clean $(ALL)
