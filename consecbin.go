@@ -8,7 +8,7 @@ func main() {
 
 	curRun, maxRun := 0, 0
 
-	for n > 0 {
+	for ; n > 0; n >>= 1 {
 		if n&1 == 1 {
 			curRun += 1
 			if curRun > maxRun {
@@ -17,7 +17,6 @@ func main() {
 		} else {
 			curRun = 0
 		}
-		n >>= 1
 	}
 
 	fmt.Println(maxRun)
